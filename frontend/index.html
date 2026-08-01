@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="authScreen" class="screen">
+  <div class="auth-card">
+    <h1>💰 Finance Tracker</h1>
+
+    <div class="tabs">
+      <button id="tabLogin" class="tab active">Log In</button>
+      <button id="tabSignup" class="tab">Sign Up</button>
+    </div>
+
+    <form id="loginForm" class="auth-form">
+      <label>Email</label>
+      <input type="email" id="loginEmail" required>
+      <label>Password</label>
+      <input type="password" id="loginPassword" required>
+      <button type="submit" class="btn-primary">Log In</button>
+      <p class="error" id="loginError"></p>
+    </form>
+
+    <form id="signupForm" class="auth-form hidden">
+      <label>Name</label>
+      <input type="text" id="signupName" required>
+      <label>Email</label>
+      <input type="email" id="signupEmail" required>
+      <label>Password (min 6 characters)</label>
+      <input type="password" id="signupPassword" required minlength="6">
+      <button type="submit" class="btn-primary">Create Account</button>
+      <p class="error" id="signupError"></p>
+    </form>
+  </div>
+</div>
+
+<div id="appScreen" class="screen hidden">
+  <header class="topbar">
+    <h1>💰 Finance Tracker</h1>
+    <div class="topbar-right">
+      <span id="welcomeUser"></span>
+      <button id="logoutBtn" class="btn-secondary">Log Out</button>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <div class="month-selector">
+      <button id="prevMonth">‹</button>
+      <span id="currentMonthLabel"></span>
+      <button id="nextMonth">›</button>
+    </div>
+
+    <section class="summary-cards">
+      <div class="card income-card">
+        <span class="card-label">Income</span>
+        <span class="card-value" id="totalIncome">₹0.00</span>
+      </div>
+      <div class="card expense-card">
+        <span class="card-label">Expenses</span>
+        <span class="card-value" id="totalExpense">₹0.00</span>
+      </div>
+      <div class="card balance-card">
+        <span class="card-label">Balance</span>
+        <span class="card-value" id="totalBalance">₹0.00</span>
+      </div>
+    </section>
+
+    <section class="add-transaction">
+      <h2>Add Transaction</h2>
+      <form id="transactionForm">
+        <div class="form-row">
+          <div class="type-toggle">
+            <button type="button" class="type-btn active" data-type="expense">Expense</button>
+            <button type="button" class="type-btn" data-type="income">Income</button>
+          </div>
+        </div>
+        <div class="form-row">
+          <input type="number" id="txAmount" placeholder="Amount" step="0.01" min="0.01" required>
+          <input type="date" id="txDate" required>
+        </div>
+        <div class="form-row">
+          <input type="text" id="txDescription" placeholder="Description (e.g. Groceries at store)">
+          <input type="text" id="txCategory" placeholder="Category (optional)">
+        </div>
+        <button type="submit" class="btn-primary">Add Transaction</button>
+        <p class="error" id="txError"></p>
+      </form>
+    </section>
+
+    <section class="transaction-list">
+      <h2>Transactions this month</h2>
+      <div id="txList"></div>
+      <p id="noTx" class="hidden">No transactions yet for this month.</p>
+    </section>
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
